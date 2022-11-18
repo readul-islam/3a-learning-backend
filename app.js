@@ -13,6 +13,10 @@ app.use(cors());
 app.use('/api/v1',appRoute)
 
 
+app.get('/', (req,res)=>{
+  res.json({success: true});
+})
+
 //Error handling
 app.use("*", async (req, res, next) => {
   const error = new Error("Route Not Found");

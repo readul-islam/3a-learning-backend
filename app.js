@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const userRoute = require("./routes/user.routes");
+const appRoute = require("./routes");
 
 
 app.use(express.json());
@@ -9,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
-app.use(userRoute)
+app.use('/api/v1',appRoute)
 
 
 //Error handling

@@ -3,7 +3,8 @@ var bcrypt = require("bcryptjs");
 
 //registration logic
 exports.createUser = async (req, res, next) => {
-  const { password, email, name } = req.body;
+  const { password, email } = req.body;
+  console.log(req.body)
   const encryptPassword = await bcrypt.hash(password, 10);
 
   try {
@@ -13,7 +14,7 @@ exports.createUser = async (req, res, next) => {
     }
 
     const user = await userModel.create({
-      name,
+     
       email,
       password: encryptPassword,
     });
@@ -26,7 +27,8 @@ exports.createUser = async (req, res, next) => {
 };
 // login users logic
 exports.getUser = async (req, res, next) => {
-  const { password, email } = req.body;
+  const { password, email } = req.query;
+  
 
   try {
     const user = await userModel.findOne({ email: email });
